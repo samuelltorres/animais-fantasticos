@@ -66,3 +66,26 @@ const initSmoothScroll = () => {
 	});
 };
 initSmoothScroll();
+
+const initScrollAnimation = () => {
+	const sections = document.querySelectorAll('.js-scroll');
+	if (sections.length) {
+		const windowMid = window.innerHeight * 0.7;
+
+		function scrollAnimation() {
+			sections.forEach((section) => {
+				const sectionTop = section.getBoundingClientRect().top;
+				const isSectionVisible = sectionTop - windowMid < 0;
+				if (isSectionVisible) {
+					section.classList.add('ativo');
+				} else {
+					section.classList.remove('ativo');
+				}
+			});
+		}
+		scrollAnimation();
+
+		window.addEventListener('scroll', scrollAnimation);
+	}
+};
+initScrollAnimation();
